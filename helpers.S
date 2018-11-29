@@ -13,9 +13,9 @@ mul_wo_mul:
 .L3:
         ldr     r1, [fp, #-16]    @ float
         ldr     r0, [fp, #-8]     @ float
-        ; I don't know what this is, the compiler inserted it. I don't know if
-        ; it's needed or not.
-        ; bl      __aeabi_fadd
+        // I don't know what this is, the compiler inserted it. I don't know if
+        // it's needed or not.
+        // bl      __aeabi_fadd
         mov     r3, r0
         str     r3, [fp, #-8]     @ float
         ldr     r3, [fp, #-12]
@@ -35,7 +35,7 @@ main:
         add     fp, sp, #4
         sub     sp, sp, #8
         mov     r1, #3
-        ; Float for 1.5
+        // Float for 1.5
         mov     r0, #1069547520
         bl      mul_wo_mul
         str     r0, [fp, #-8]     @ float
