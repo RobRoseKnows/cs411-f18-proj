@@ -153,3 +153,4 @@ exit_for:
     ldr r8, =CORDIC_ret          @ load address
     str r2, [r8] @ store final angle into mem
 
+.end
