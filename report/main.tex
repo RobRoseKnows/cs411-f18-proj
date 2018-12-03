@@ -1,0 +1,73 @@
+\documentclass[11pt]{article}
+
+\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in]{geometry}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{biblatex}
+
+\bibliography{references.bib}
+
+\newcommand{\email}[1]{\texttt{\href{mailto:#1}{#1}}}
+
+\title{CMSC 411 Project Documentation}
+\author{Robert Rose}
+
+\makeatletter
+\let\inserttitle\@title
+\let\insertauthor\@author
+\makeatother
+
+\begin{document}
+
+\begin{center}
+  \LARGE{\inserttitle}
+
+  \Large{\insertauthor}
+\end{center}
+
+\section{Getting Data}
+
+
+% we can use this as a base for a table containing execution times.
+% \begin{table}[h]
+%  \centering
+%  \caption{Cluster and Centroid Simple Model Results}
+%  \begin{tabular}{||c c c c||} 
+%  \hline
+%  Index & Name & Score & Execution Time \\ [0.5ex] 
+%  \hline\hline
+%  4 & kmeans\_4\_centroids & 0.089267 &	47.68s \\ 
+%  \hline
+%  5 & kmeans\_5\_clusters & 0.089349 & 47.73s \\
+%  \hline
+%  1 & kmeans\_3\_clusters & 0.089359 &	46.66s \\
+%  \hline
+%  6 & kmeans\_5\_centroids & 0.089408 &	48.28s \\
+%  \hline
+%  3 & kmeans\_4\_clusters & 0.089562 & 48.72s \\
+%  \hline
+%  2 & kmeans\_3\_centroids & 0.089677 & 47.29s \\
+%  \hline
+%  0 & original &	0.092813 & 28.97s \\ 
+%  \hline
+% \end{tabular}
+% \end{table}
+
+% \begin{figure}[h]
+% \caption{K-Means with Five Clusters}
+% \includegraphics[width=0.6\textwidth]{clusters.png}
+% \centering
+% \end{figure}
+
+\printbibliography
+
+\end{document}
