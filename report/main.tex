@@ -19,7 +19,7 @@
 \newcommand{\email}[1]{\texttt{\href{mailto:#1}{#1}}}
 
 \title{CMSC 411 Project Documentation}
-\author{Robert Rose}
+\author{Robert Rose, Alex Flaerty and Mina Beshai}
 
 \makeatletter
 \let\inserttitle\@title
@@ -34,7 +34,22 @@
   \Large{\insertauthor}
 \end{center}
 
-\section{Getting Data}
+\section{Project Progress}
+
+In the beginning we were hoping to implement the algorithms entirely on our own, but unfortunately 
+the resources out there on CORDIC, especially beyond simply sine and cosine, are rather sparse.
+Although the original CORDIC paper is somewhat helpful, we didn't initially go looking for 
+it.\cite{volder1959cordic}\\
+
+When we first went to research sine and cosine approximation, we mostly got resources detailing Taylor
+series and approximation using multiplication.\cite{coranac} It wasn't until class on Thursday when
+Professor Cain sent out code he found and talked about the project in class that we knew what to
+look for.\cite{cainemail} After some digging on GitHub, Mina found an old project from last year that
+we could tear apart and re-document.\cite{oldproj} We then went through and improved the documentation
+for that project and then looked for any areas of improvement. We did actually manage to find one area
+where the code could potentially be improved. In addressing the lookup table, we can potentially shave
+off one instruction by using ARM's register offset addressing instead of adding to the address register
+and then referencing it.\cite{registeroffsetmanual}
 
 
 % we can use this as a base for a table containing execution times.
