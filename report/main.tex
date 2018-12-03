@@ -36,9 +36,9 @@
 
 \section{Project Progress}
 
-In the beginning we were hoping to implement the algorithms entirely on our own, but unfortunately 
+In the beginning we were hoping to implement the algorithms entirely on our own, but unfortunately
 the resources out there on CORDIC, especially beyond simply sine and cosine, are rather sparse.
-Although the original CORDIC paper is somewhat helpful, we didn't initially go looking for 
+Although the original CORDIC paper is somewhat helpful, we didn't initially go looking for
 it.\cite{volder1959cordic}\\
 
 When we first went to research sine and cosine approximation, we mostly got resources detailing Taylor
@@ -49,30 +49,37 @@ we could tear apart and re-document.\cite{oldproj} We then went through and impr
 for that project and then looked for any areas of improvement. We did actually manage to find one area
 where the code could potentially be improved. In addressing the lookup table, we can potentially shave
 off one instruction by using ARM's register offset addressing instead of adding to the address register
-and then referencing it.\cite{registeroffsetmanual}
+and then referencing it.\cite{registeroffsetmanual}\\
+
+We also attempted the extra credit, since partial credit is awarded. One of the sources we had provided
+C code for a $log()$ estimator but we chose not to implement it in ARM because we weren't sure if $log()$
+was available for extra credit, only $ln()$ is listed on the handout.\cite{efunclog} After submitting the
+main project as well we also tried to write $sqrt()$ in ARM as well and succeeded, although with using
+multiply in order to simplify the algorithm. We found C code online and then used the sine-cosine ARM code
+as a base in order to write it in ARM.\cite{sqrtcordic}
 
 
 % we can use this as a base for a table containing execution times.
 % \begin{table}[h]
 %  \centering
 %  \caption{Cluster and Centroid Simple Model Results}
-%  \begin{tabular}{||c c c c||} 
+%  \begin{tabular}{||c c c c||}
 %  \hline
-%  Index & Name & Score & Execution Time \\ [0.5ex] 
+%  Index & Name & Score & Execution Time \\ [0.5ex]
 %  \hline\hline
-%  4 & kmeans\_4\_centroids & 0.089267 &	47.68s \\ 
+%  4 & kmeans\_4\_centroids & 0.089267 &    47.68s \\
 %  \hline
 %  5 & kmeans\_5\_clusters & 0.089349 & 47.73s \\
 %  \hline
-%  1 & kmeans\_3\_clusters & 0.089359 &	46.66s \\
+%  1 & kmeans\_3\_clusters & 0.089359 & 46.66s \\
 %  \hline
-%  6 & kmeans\_5\_centroids & 0.089408 &	48.28s \\
+%  6 & kmeans\_5\_centroids & 0.089408 &    48.28s \\
 %  \hline
 %  3 & kmeans\_4\_clusters & 0.089562 & 48.72s \\
 %  \hline
 %  2 & kmeans\_3\_centroids & 0.089677 & 47.29s \\
 %  \hline
-%  0 & original &	0.092813 & 28.97s \\ 
+%  0 & original &   0.092813 & 28.97s \\
 %  \hline
 % \end{tabular}
 % \end{table}
