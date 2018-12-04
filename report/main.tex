@@ -34,7 +34,7 @@
   \Large{\insertauthor}
 \end{center}
 
-\section{Project Progress}
+\section{Approach}
 
 In the beginning we were hoping to implement the algorithms entirely on our own, but unfortunately
 the resources out there on CORDIC, especially beyond simply sine and cosine, are rather sparse.
@@ -58,31 +58,93 @@ main project as well we also tried to write $sqrt()$ in ARM as well and succeede
 multiply in order to simplify the algorithm. We found C code online and then used the sine-cosine ARM code
 as a base in order to write it in ARM.\cite{sqrtcordic}
 
+\section{Results}
 
-% we can use this as a base for a table containing execution times.
-% \begin{table}[h]
-%  \centering
-%  \caption{Cluster and Centroid Simple Model Results}
-%  \begin{tabular}{||c c c c||}
-%  \hline
-%  Index & Name & Score & Execution Time \\ [0.5ex]
-%  \hline\hline
-%  4 & kmeans\_4\_centroids & 0.089267 &    47.68s \\
-%  \hline
-%  5 & kmeans\_5\_clusters & 0.089349 & 47.73s \\
-%  \hline
-%  1 & kmeans\_3\_clusters & 0.089359 & 46.66s \\
-%  \hline
-%  6 & kmeans\_5\_centroids & 0.089408 &    48.28s \\
-%  \hline
-%  3 & kmeans\_4\_clusters & 0.089562 & 48.72s \\
-%  \hline
-%  2 & kmeans\_3\_centroids & 0.089677 & 47.29s \\
-%  \hline
-%  0 & original &   0.092813 & 28.97s \\
-%  \hline
-% \end{tabular}
-% \end{table}
+In order to get the CPI and other stats, we first needed to run ARMSim multiple times in order to get
+the average number of instructions per second from the console output. We borrowed this portion of the
+procedure from a previous group's project that we found on GitHub.\cite{oldreport} For the sine and
+cosine script we ran eight trials but one of the trials resulted in an extremely large instructions
+per second, so it was discarded as an outlier. When we reran that run with the same inputs, the result
+was equally as large. We're not sure if this is an error in the program or simply something that happens
+for some values.\\
+
+\begin{equation}
+    IPS_{sincos} = \frac{4739 + 4839 + 4675 + 4829 + 4926 + 4387 + 4939}{7} = 4762
+\end{equation}
+
+\begin{equation}
+    INS_{sincos} = \frac{244 + 242 + 242 + 242 + 246 + 241 + 244}{7} = 243
+\end{equation}
+
+Unfortunately, as we're working on the report now we realized that the previous report we found wasn't
+actually correct.\cite{oldreport} We don't actually know how we're supposed to calculate the CPI without
+manually stepping through the program, something not really possible since it has hundreds of instructions
+total. After talking it over with our team and not hearing back from Professor Cain in time we decided to
+search for any ARMSim plugins to help us. We did find the ARMSim paper however.\cite{armsim}\\
+
+Our contingency plan for if we cannot find an ARMSim plugin or option to calculate instruction shares for
+us is to take the average CPI of the instructions we used and multiplying it by the average count of number
+of Instructions returned by ARMSim. We ended up deciding that the limitations of ARMSim were too much for
+us, and decided to use the VisUAL editor to complete CPI measurements.\cite{visUAL}
+
+\section{Input/Output}
+
+Here we've detailed the input and output of our program. For sine and cosine, we used degrees and for the
+hyperbolic equations we used radians as our results were closer to the ones the professor outlined in the
+email he sent out.\cite{profemailresults}
+
+\begin{table}[h]
+ \centering
+ \caption{Sine and Cosine Input and Output}
+ \begin{tabular}{||c c c c||}
+ \hline
+ Degrees & Hex & Sine & Cosine \\ [0.5ex]
+ \hline\hline
+ 14.3239    & 000E 52EB & 0000 F803 & 0000 3F70 \\
+ \hline
+ 15         & 000F 0000 & 0000 F744 & 0000 4253 \\
+ \hline
+ 28.6479    & 001C A5DC & 0000 E09E & 0000 7AD2 \\
+ \hline
+ 42.9718    & 002A F8C7 & 0000 BB4E & 0000 AE84 \\
+ \hline
+ 45.5       & 002D 8000 & 0000 B361 & 0000 B6A5 \\
+ \hline
+ 57.2958    & 0039 4BB9 & 0000 8A48 & 0000 D770 \\
+ \hline
+ 66         & 0042 0000 & 0000 6809 & 0000 E9E8 \\
+ \hline
+ 89.125     & 0059 2000 & 0000 03F2 & 0000 FFF6 \\
+ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+ \centering
+ \caption{Sinh and Cosh Input and Output}
+ \begin{tabular}{||c c c c||}
+ \hline
+ Radians & Hex & Sinh & Cosh \\ [0.5ex]
+ \hline\hline
+ $\frac{1}{4}$  & 0000 4000 & 0000 409C & 0001 48B4 \\
+ \hline
+ 0.2618         & 0000 4305 & 0000 4357 & 0001 4C9B \\
+ \hline
+ $\frac{1}{2}$  & 0000 8000 & 0000 8533 & 0001 A60F \\
+ \hline
+ $\frac{3}{4}$  & 0000 C000 & 0000 D26D & 0002 1DF6 \\
+ \hline
+ 0.7941         & 0000 CB4A & 0000 E14D & 0002 3666 \\
+ \hline
+ 1              & 0001 0000 & 0001 2CB2 & 0002 B7E4 \\
+ \hline
+ 1.1519         & 0001 26E2 & 0001 6C7D & 0003 2A09 \\
+ \hline
+ 1.5533         & 0001 8DA5 & 0002 41EE & 0004 BA1D \\
+ \hline
+\end{tabular}
+\end{table}
+
 
 % \begin{figure}[h]
 % \caption{K-Means with Five Clusters}
