@@ -85,7 +85,21 @@ search for any ARMSim plugins to help us. We did find the ARMSim paper however.\
 Our contingency plan for if we cannot find an ARMSim plugin or option to calculate instruction shares for
 us is to take the average CPI of the instructions we used and multiplying it by the average count of number
 of Instructions returned by ARMSim. We ended up deciding that the limitations of ARMSim were too much for
-us, and decided to use the VisUAL editor to complete CPI measurements.\cite{visUAL}
+us, and decided to use the VisUAL editor to complete CPI measurements.\cite{visUAL}\\
+
+Thankfully the work with VisUAL worked, with a little fiddling. In order to get the project working on ARM UAL
+instruction sets, which is similar but not identical to ARM, we had to remove "global \_start", change the
+comment characters to a semicolon, remove all periods, and change "word" in variable declaration to "DCD"
+according to Alex, who got VisUAL working for us. We're not sure whether this was the way Professor Cain
+intended us to calculate CPI, but it worked for our project rather well.\\
+
+As a result we found a CPI for $sin$/$cos$ of 1.306, as it takes 290 cycles to run, with 222 instructions. As a
+result it would run in 9062.5 microseconds on a 32kHZ processor, 290 microseconds on a 1MHz processor and
+0.29 microseconds on a 1GHz processor. We found a CPI of 1.34 for $sinh$/$cosh$ and $e^x$ with 238 instructions total.
+Meaning it would run in 7437.5 microseconds on a 32kHz processor 238 microseconds on a 1MHz processor and
+.238 microseconds on a 1GHz processor. It is somewhat surprising to see that the runtime of $sin$/$cos$ was
+shorter than the hyperbolic functions despite having a lower CPI. That may be due to the implementation of the
+algorithms we used though.\\
 
 \section{Input/Output}
 
