@@ -76,11 +76,14 @@ for some values.\\
     INS_{sincos} = \frac{244 + 242 + 242 + 242 + 246 + 241 + 244}{7} = 243
 \end{equation}
 
-Unfortunately, as we're working on the report now we realized that the previous report we found was a
-piece of shit and wasn't actually correct.\cite{oldreport} We don't actually know how we're supposed to
-calculate the CPI without manually stepping through the program, something not really possible since it
-has hundreds of instructions total. After talking it over with our team and not hearing back from Dr. Cain
-in time we decided to search for any ARMSim plugins to help us.\\
+Unfortunately, as we're working on the report now we realized that the previous report we found wasn't
+actually correct.\cite{oldreport} We don't actually know how we're supposed to calculate the CPI without
+manually stepping through the program, something not really possible since it has hundreds of instructions
+total. After talking it over with our team and not hearing back from Professor Cain in time we decided to
+search for any ARMSim plugins to help us.\\
+
+Our contingency plan for if we cannot find an ARMSim plugin or option to calculate instruction shares for
+us is to take the average CPI of the instructions we used and multiplying it by the average count of number of Instructions returned by ARMSim.
 
 \section{Input/Output}
 
