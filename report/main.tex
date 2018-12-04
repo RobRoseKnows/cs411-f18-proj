@@ -80,10 +80,12 @@ Unfortunately, as we're working on the report now we realized that the previous 
 actually correct.\cite{oldreport} We don't actually know how we're supposed to calculate the CPI without
 manually stepping through the program, something not really possible since it has hundreds of instructions
 total. After talking it over with our team and not hearing back from Professor Cain in time we decided to
-search for any ARMSim plugins to help us.\\
+search for any ARMSim plugins to help us. We did find the ARMSim paper however.\cite{armsim}\\
 
 Our contingency plan for if we cannot find an ARMSim plugin or option to calculate instruction shares for
-us is to take the average CPI of the instructions we used and multiplying it by the average count of number of Instructions returned by ARMSim.
+us is to take the average CPI of the instructions we used and multiplying it by the average count of number
+of Instructions returned by ARMSim. We ended up deciding that the limitations of ARMSim were too much for
+us, and decided to use the VisUAL editor to complete CPI measurements.\cite{visUAL}
 
 \section{Input/Output}
 
