@@ -32,7 +32,7 @@ ldr r8, =NegativeExponentAlpha  @ load address
 @ First for loop
 for1Neg:
     cmp r1, #3					@ For loop from 0 to 3
-    bgt for2Neg    				
+    bgt for2Neg
 
     ldr r6, [r8]              	@ We are going to load the value from memory NegativeExponentAlpha[r1]
     sub r5, r3, r6    			@ t = x - NegativeExponentAlpha[r1]
@@ -77,7 +77,7 @@ for2Neg:
 
         mov r3, r5 		@ x = t
 
-        
+
         sub r7, r1, #2  @ r1 - 2
         asr r7, r4, r7  @ y >> r1 - 2
         sub r4, r4, r7  @ y= y - y>> r1 - 2
@@ -116,13 +116,13 @@ exitLoopNeg:
 
     @ Store our output into memory.
 
-    ldr r8, =NegExponentY       	
+    ldr r8, =NegExponentY
     str r4, [r8]            		@ Store final value of y (e^-x)
 
-    ldr r8, =NegativeExponentAngle  
+    ldr r8, =NegativeExponentAngle
     str r3, [r8]            		@ Store final angle (e^-x)
 
-    ldr r8, =NegativeExponentT      
+    ldr r8, =NegativeExponentT
     str r5, [r8]             		@ Store final value of T
 
     mov r9, r4              		@ Save Y for later in hyperbolic calculations
@@ -145,22 +145,22 @@ Exponent:
 for1:
     cmp r1, #3
         bgt for2
-    
+
         ldr r6, [r8]        	@ ExponentAlpha[r1]
 
         sub r5, r3, r6    		@ t = x - ExponentAlpha[r1]
 
         if1:
 
-            cmp r5, #0 			@ If t is negative we break because x can not be negative. 
-            blt if1Exit		
+            cmp r5, #0 			@ If t is negative we break because x can not be negative.
+            blt if1Exit
 
             mov r3, r5 			@ x = t
 
             mov r6, #1
             mov r7, #3
-            sub r7, r7, r1		
-            lsl r7, r6, r7		
+            sub r7, r7, r1
+            lsl r7, r6, r7
             lsl r4, r4, r7  	@ y <<= 2^(3 - r1)
 
         if1Exit:
@@ -180,11 +180,11 @@ for2:
 
         if2:
 
-            cmp r5, #0 			@ If t is negative we break because x can not be negative. 
+            cmp r5, #0 			@ If t is negative we break because x can not be negative.
             blt if2Exit
 
             mov r3, r5 			@ x = t
-       
+
             sub r7, r1, #3  	@ r1 - 3
             asr r7, r4, r7  	@ y >>= r1 - 3
             add r4, r4, r7  	@ y = y + y >>= r1 - 3
@@ -204,7 +204,7 @@ for3:
             and r6, r3, r0
             cmp r6, #0 				@ If a bitwise and between x and 0x100 / 2^r1 results in 0 we will break.
             beq if3Exit
-       
+
             sub r7, r1, #3  		@ r1 - 3
             asr r7, r4, r7  		@ y >>= r1 - 3
             add r4, r4, r7  		@ y = y + y >>= r1 - 3
@@ -216,17 +216,17 @@ for3:
 
         b for3
 
-@ This is where all the final answers get stored into their respective .data memory locations. 
+@ This is where all the final answers get stored into their respective .data memory locations.
 exit_loopx:
 
     ldr r8, =ExponentY      @ Final value of e^x
-       str r4, [r8]           
+       str r4, [r8]
 
-       ldr r8, =ExponentAngle  @ Final value for the angle (e^x)  
-       str r3, [r8]           
+       ldr r8, =ExponentAngle  @ Final value for the angle (e^x)
+       str r3, [r8]
 
-       ldr r8, =ExponentT   	@ Final value for the angle (e^x)  	
-       str r5, [r8]          
+       ldr r8, =ExponentT   	@ Final value for the angle (e^x)
+       str r5, [r8]
 
 
     mov r7, #1				@ Calculate cosh(x)
@@ -234,25 +234,25 @@ exit_loopx:
     asr r3, r3, r7
 
     ldr r8, =COSH     		@ Final value for cosh(x)
-    str r3, [r8]       
+    str r3, [r8]
 
     mov r7, #1				@ Calculate sinh(x)
     sub r3, r4, r9
     asr r3, r3, r7
 
-    ldr r8, =SINH    		@ Final value for sinh(x) 
-    str r3, [r8]       
+    ldr r8, =SINH    		@ Final value for sinh(x)
+    str r3, [r8]
 
-   
 
-    
+
+
 .data
 
 ExponentAlpha: .word 363410, 181705, 90852, 45423, 26573, 14624, 7719, 3973, 2017, 1016, 510
 NegativeExponentAlpha:	.word 363410, 181705, 90852, 45423, 18848, 8749, 4227, 2077, 1028, 511, 255
 
 @ Reserved storage for results in memory.
-ExponentInput: .word 0x10000 		@ Input angle to use for calculating e^x, e^-x, cosh, sinh
+ExponentInput: .word 0x00004305 		@ Input angle to use for calculating e^x, e^-x, cosh, sinh
 
 ExponentAngle:   .word 0			@ Final value of the angle
 NegativeExponentAngle:  .word 0		@ Final value of the angle (e^-x)
@@ -260,8 +260,8 @@ NegativeExponentAngle:  .word 0		@ Final value of the angle (e^-x)
 ExponentY:     .word 0  			@ Calculated value e^x
 NegExponentY:  .word 0  			@ Calculated value e^-x
 
-ExponentT:     .word 0				@ Final value of T   
-NegativeExponentT:  .word 0  		@ Final value of T (e^-x)  
+ExponentT:     .word 0				@ Final value of T
+NegativeExponentT:  .word 0  		@ Final value of T (e^-x)
 
 COSH:	.word 0						@ cosh(x)
 SINH:	.word 0						@ sinh(x)

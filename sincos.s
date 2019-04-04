@@ -33,7 +33,7 @@
     @ 1         @ 57.2958   @ 3754937
     @ 1.1519    @ 66        @ 4325376
     @ 1.5533    @ 89.125    @ 5840896
-    CORDIC_input:   .word 2816199
+    CORDIC_input:   .word 0x00230000
 
     @ Final value of cosine. We prepopulate it with a value that is shifted
     @ via the CORDIC algorithm
